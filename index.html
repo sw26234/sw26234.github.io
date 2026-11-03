@@ -2,10 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Wellbeing</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- BAD APPLE BACKGROUND VIDEO -->
+    <video id="backgroundVideo" class="background-video" playsinline preload="none">
+        <source src="https://media.githubusercontent.com/media/sw26234/-sw26234.github.io/main/bad-apple.mp4" type="video/mp4">
+    </video>
+
+    <!-- HIDDEN PLAY BUTTON -->
+    <button id="videoButton" class="video-button" aria-label="Play background video">
+        ▶
+    </button>
 
     <div class="page" id="home">
         <div class="side">
@@ -298,6 +309,42 @@
             </div>
         </div>
     </div>
+
+    <!-- VIDEO PLAYBACK SCRIPT -->
+    <script>
+        const video = document.getElementById("backgroundVideo");
+        const button = document.getElementById("videoButton");
+
+        // Start playing when the button is clicked
+        button.addEventListener("click", async function () {
+            button.hidden = true;
+
+            video.classList.add("is-playing");
+
+            try {
+                await video.play();
+            } catch (error) {
+                console.error("Video playback failed:", error);
+
+                video.classList.remove("is-playing");
+                button.hidden = false;
+            }
+        });
+
+        // Show the play button again when the video finishes
+        video.addEventListener("ended", function () {
+            video.classList.remove("is-playing");
+            video.currentTime = 0;
+            button.hidden = false;
+        });
+
+        // Restore the button if the video cannot load
+        video.addEventListener("error", function () {
+            video.classList.remove("is-playing");
+            button.hidden = false;
+            console.error("Unable to load Bad Apple video.");
+        });
+    </script>
 
 </body>
 </html>
