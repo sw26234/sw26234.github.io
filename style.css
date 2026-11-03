@@ -137,14 +137,11 @@ body:not(:has(:target)) #home {
 }
 
 h1 {
-    width: fit-content;
-    margin: 6px 0 20px 0;
-    padding-bottom: 12px;
-    font-size: 38px;
-
-    border-bottom: 3px solid white;
-
-    mix-blend-mode: difference;
+  width: fit-content;
+  margin: 6px 0 20px 0;
+  padding-bottom: 12px;
+  font-size: 38px;
+  border-bottom: 3px solid #00b4e0;
 }
 
 
