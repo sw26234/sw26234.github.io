@@ -483,10 +483,10 @@ h1 {
 
 
 /* =================================
-   MOBILE BLOCK（禁止手机访问）
+   PHONE BLOCK（只禁止手机，平板和电脑可访问）
    ================================= */
 
-/* 默认（电脑端）不显示提示 */
+/* 默认不显示提示 */
 .mobile-block {
   display: none;
 }
@@ -523,8 +523,35 @@ h1 {
   color: #222;
 }
 
-/* 手机 / 平板 / 窄屏：隐藏整个网站，只显示提示 */
-@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+/* JS 检测到手机时：隐藏整个网站，只显示提示 */
+html.is-phone,
+html.is-phone body {
+  height: 100%;
+  overflow: hidden;
+}
+
+html.is-phone .page,
+html.is-phone .page:target,
+html.is-phone body:not(:has(:target)) #home,
+html.is-phone .background-video,
+html.is-phone .video-button {
+  display: none !important;
+}
+
+html.is-phone .mobile-block {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #eef4f8;
+}
+
+/* CSS 兜底（JS 被禁用时）：窄屏触屏设备视为手机
+   宽度上限 600px，平板（≥744px）和电脑窗口不受影响 */
+@media (max-width: 600px) and (hover: none) and (pointer: coarse) {
   html,
   body {
     height: 100%;
@@ -549,30 +576,4 @@ h1 {
     padding: 20px;
     background-color: #eef4f8;
   }
-}
-
-/* JS 检测到手机 / 平板 UA 时（覆盖手机横屏等情况） */
-html.is-mobile,
-html.is-mobile body {
-  height: 100%;
-  overflow: hidden;
-}
-
-html.is-mobile .page,
-html.is-mobile .page:target,
-html.is-mobile body:not(:has(:target)) #home,
-html.is-mobile .background-video,
-html.is-mobile .video-button {
-  display: none !important;
-}
-
-html.is-mobile .mobile-block {
-  position: fixed;
-  inset: 0;
-  z-index: 999999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #eef4f8;
 }
