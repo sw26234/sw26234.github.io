@@ -4,9 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Wellbeing</title>
+
+    <!-- 移动端检测：尽早执行，避免页面闪现 -->
+    <script>
+        (function () {
+            var ua = navigator.userAgent || "";
+            var isMobileUA = /Android|iPhone|iPad|iPod|Mobile|Windows Phone|BlackBerry|Opera Mini|IEMobile|HarmonyOS/i.test(ua);
+            var isIPadOS = /Macintosh/i.test(ua) && navigator.maxTouchPoints > 1;
+            if (isMobileUA || isIPadOS) {
+                document.documentElement.classList.add("is-mobile");
+            }
+        })();
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- 移动端拦截提示 -->
+    <div id="mobileBlock" class="mobile-block" role="alert">
+        <div class="mobile-block-card">
+            <div class="mobile-block-icon">🖥️</div>
+            <h2>Desktop Only</h2>
+            <p>This website is not available on mobile devices.<br>Please visit it on a computer.</p>
+            <p class="mobile-block-cn">本网站不支持手机访问，请使用电脑打开。</p>
+        </div>
+    </div>
 
     <!-- BAD APPLE BACKGROUND VIDEO -->
     <video id="backgroundVideo" class="background-video" playsinline preload="none">
@@ -315,8 +338,24 @@
         const video = document.getElementById("backgroundVideo");
         const button = document.getElementById("videoButton");
 
+        // 移动端：不加载、不播放视频
+        const isBlocked =
+            document.documentElement.classList.contains("is-mobile") ||
+            window.matchMedia("(max-width: 900px), (hover: none) and (pointer: coarse)").matches;
+
+        if (isBlocked) {
+            video.removeAttribute("src");
+            while (video.firstChild) {
+                video.removeChild(video.firstChild);
+            }
+            video.load();
+            button.hidden = true;
+        }
+
         // Start playing when the button is clicked
         button.addEventListener("click", async function () {
+            if (isBlocked) return;
+
             button.hidden = true;
 
             video.classList.add("is-playing");
@@ -340,6 +379,7 @@
 
         // Restore the button if the video cannot load
         video.addEventListener("error", function () {
+            if (isBlocked) return;
             video.classList.remove("is-playing");
             button.hidden = false;
             console.error("Unable to load Bad Apple video.");
