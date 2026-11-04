@@ -1,579 +1,401 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #222;
-  background-color: #eef4f8;
-  min-height: 100vh;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-
-.page {
-  display: none;
-}
-
-.page:target {
-  display: block;
-}
-
-body:not(:has(:target)) #home {
-  display: block;
-}
-
-
-.side {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 170px;
-  height: 100%;
-  background-color: white;
-  border-right: 1px solid #ddd;
-  z-index: 3;
-}
-
-.logo {
-  padding: 20px 0;
-  font-size: 18px;
-  text-align: center;
-  color: white;
-  background-color: black;
-}
-
-
-.menu {
-  padding: 15px;
-  border-bottom: 1px solid #ddd;
-}
-
-.menu a {
-  display: block;
-  margin-bottom: 5px;
-  padding: 8px 12px;
-  font-size: 13px;
-  color: #555;
-  border-radius: 5px;
-}
-
-.menu a:hover {
-  color: #0099cc;
-  background-color: #e3f4fa;
-}
-
-.menu a.now {
-  color: #0099cc;
-  background-color: #e3f4fa;
-  border-left: 3px solid #0099cc;
-}
-
-
-.signup {
-  display: block;
-  margin: 25px 15px;
-  padding: 10px 0;
-  font-size: 12px;
-  font-weight: bold;
-  text-align: center;
-  background-color: #ffcc00;
-  border-radius: 8px;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
-}
-
-.signup:hover,
-.button:hover {
-  background-color: #ffdd44;
-}
-
-
-.side-bottom {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.yellow-bar {
-  height: 28px;
-  background-color: #ffcc00;
-}
-
-.contact {
-  padding: 10px;
-  font-size: 10px;
-  color: #444;
-}
-
-.contact p {
-  margin-top: 4px;
-  font-weight: bold;
-  color: black;
-}
-
-
-.main {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin-left: 170px;
-  padding: 25px 35px;
-  position: relative;
-  z-index: 2;
-  background: transparent;
-}
-
-.small-title {
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: #0099cc;
-}
-
-h1 {
-  width: fit-content;
-  margin: 6px 0 20px 0;
-  padding-bottom: 12px;
-  font-size: 38px;
-  border-bottom: 3px solid #00b4e0;
-}
-
-
-.box {
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.words {
-  padding: 25px 30px;
-  font-size: 14px;
-  line-height: 22px;
-}
-
-.words h2 {
-  margin-bottom: 10px;
-  font-size: 17px;
-}
-
-.words p {
-  margin-bottom: 10px;
-}
-
-.words p:last-child {
-  margin-bottom: 0;
-}
-
-.extra,
-.myth-wide {
-  margin-bottom: 20px;
-}
-
-
-.home-grid,
-.youth-grid,
-.solutions-grid,
-.myth-grid {
-  display: grid;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-
-.home-grid,
-.youth-grid,
-.solutions-grid {
-  grid-template-columns: 1fr 1fr;
-}
-
-.myth-grid {
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.wide {
-  grid-column: 1 / 3;
-}
-
-.solutions-grid .tall {
-  grid-row: 1 / 3;
-}
-
-
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-  padding: 15px 25px;
-  font-size: 12px;
-  color: #555;
-  border-radius: 12px;
-}
-
-.footer-left b {
-  display: block;
-  font-size: 13px;
-  color: black;
-}
-
-
-.about-top {
-  display: grid;
-  grid-template-columns: 1fr 230px;
-  gap: 20px;
-}
-
-.about-left {
-  padding: 25px;
-}
-
-.about-left h2 {
-  margin-bottom: 12px;
-}
-
-.about-left p {
-  font-size: 18px;
-  line-height: 40px;
-}
-
-.numbers {
-  display: flex;
-  gap: 25px;
-  margin-top: 25px;
-  padding-top: 15px;
-  border-top: 1px solid #ddd;
-}
-
-.numbers div {
-  font-size: 12px;
-  font-weight: bold;
-  color: #555;
-}
-
-.numbers b {
-  display: block;
-  margin-bottom: 3px;
-  font-size: 24px;
-}
-
-.blue {
-  color: #00b4e0;
-}
-
-.gold {
-  color: #d49a00;
-}
-
-
-.profile {
-  padding: 20px;
-  text-align: center;
-}
-
-.profile img {
-  width: 155px;
-  height: 200px;
-  object-fit: cover;
-  border: 3px solid #00b4e0;
-  border-radius: 12px;
-}
-
-.profile h2 {
-  margin-top: 12px;
-  font-size: 22px;
-  color: #00b4e0;
-}
-
-.job {
-  margin: 4px 0 14px 0;
-  font-size: 12px;
-  color: #555;
-}
-
-.pill {
-  margin-bottom: 10px;
-  padding: 6px 0;
-  font-size: 12px;
-  font-weight: bold;
-  background-color: #eefaff;
-  border-radius: 8px;
-}
-
-.button {
-  display: block;
-  padding: 10px 0;
-  font-size: 12px;
-  font-weight: bold;
-  background-color: #ffcc00;
-  border-radius: 8px;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
-}
-
-
-.skills {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin: 20px 0;
-}
-
-.skill {
-  padding: 20px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 18px;
-}
-
-.skill.active {
-  border: 2px solid #00b4e0;
-}
-
-.skill small {
-  font-size: 11px;
-  font-weight: bold;
-  color: #00b4e0;
-}
-
-.skill h3 {
-  margin: 8px 0 12px 0;
-  padding-bottom: 12px;
-  font-size: 24px;
-  border-bottom: 1px solid #ddd;
-}
-
-.skill li {
-  list-style: none;
-  font-size: 13px;
-  line-height: 20px;
-  color: #555;
-}
-
-.skill-button {
-  margin-top: 15px;
-  padding: 8px 0;
-  font-size: 12px;
-  font-weight: bold;
-  text-align: center;
-  background-color: #ffcc00;
-  border-radius: 8px;
-}
-
-
-/* =================================
-   BAD APPLE BACKGROUND VIDEO
-   ================================= */
-
-.background-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 100vw;
-  height: 100vh;
-
-  object-fit: cover;
-
-  background-color: transparent;
-
-  z-index: 0;
-
-  pointer-events: none;
-
-  opacity: 0;
-
-  transition: opacity 0.4s ease;
-}
-
-
-/* Show video only during playback */
-
-.background-video.is-playing {
-  opacity: 1;
-}
-
-
-/* Keep website pages above the video */
-
-.page {
-  position: relative;
-  z-index: 1;
-}
-
-
-/* Keep the sidebar above the video */
-
-.side {
-  z-index: 3;
-}
-
-
-/* Keep the content above the video */
-
-.main {
-  position: relative;
-  z-index: 2;
-}
-
-
-/* =================================
-   VIDEO PLAY BUTTON
-   ================================= */
-
-.video-button {
-  position: fixed;
-
-  right: 25px;
-  bottom: 25px;
-
-  width: 55px;
-  height: 55px;
-
-  border: 2px solid white;
-  border-radius: 50%;
-
-  background-color: rgba(0, 0, 0, 0.85);
-
-  color: white;
-  font-size: 22px;
-
-  cursor: pointer;
-
-  opacity: 0.15;
-
-  z-index: 99999;
-
-  display: block;
-
-  transition:
-    opacity 0.25s ease,
-    background-color 0.25s ease,
-    transform 0.2s ease;
-}
-
-
-/* Make button visible when hovering */
-
-.video-button:hover,
-.video-button:focus-visible {
-  opacity: 1;
-
-  background-color: #0099cc;
-
-  outline: none;
-}
-
-
-/* Button animation */
-
-.video-button:active {
-  transform: scale(0.94);
-}
-
-
-/* Hide button while video is playing */
-
-.video-button[hidden] {
-  display: none;
-}
-
-
-/* =================================
-   PHONE BLOCK（只禁止手机，平板和电脑可访问）
-   ================================= */
-
-/* 默认不显示提示 */
-.mobile-block {
-  display: none;
-}
-
-.mobile-block-card {
-  max-width: 340px;
-  padding: 36px 28px;
-  text-align: center;
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-}
-
-.mobile-block-icon {
-  margin-bottom: 12px;
-  font-size: 48px;
-}
-
-.mobile-block-card h2 {
-  margin-bottom: 12px;
-  font-size: 22px;
-  color: #0099cc;
-}
-
-.mobile-block-card p {
-  font-size: 14px;
-  line-height: 22px;
-  color: #444;
-}
-
-.mobile-block-cn {
-  margin-top: 12px;
-  font-weight: bold;
-  color: #222;
-}
-
-/* JS 检测到手机时：隐藏整个网站，只显示提示 */
-html.is-phone,
-html.is-phone body {
-  height: 100%;
-  overflow: hidden;
-}
-
-html.is-phone .page,
-html.is-phone .page:target,
-html.is-phone body:not(:has(:target)) #home,
-html.is-phone .background-video,
-html.is-phone .video-button {
-  display: none !important;
-}
-
-html.is-phone .mobile-block {
-  position: fixed;
-  inset: 0;
-  z-index: 999999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #eef4f8;
-}
-
-/* CSS 兜底（JS 被禁用时）：窄屏触屏设备视为手机
-   宽度上限 600px，平板（≥744px）和电脑窗口不受影响 */
-@media (max-width: 600px) and (hover: none) and (pointer: coarse) {
-  html,
-  body {
-    height: 100%;
-    overflow: hidden;
-  }
-
-  .page,
-  .page:target,
-  body:not(:has(:target)) #home,
-  .background-video,
-  .video-button {
-    display: none !important;
-  }
-
-  .mobile-block {
-    position: fixed;
-    inset: 0;
-    z-index: 999999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: #eef4f8;
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Wellbeing</title>
+
+    <!-- 手机检测：尽早执行，避免页面闪现（平板和电脑不受影响） -->
+    <script>
+        (function () {
+            var ua = navigator.userAgent || "";
+
+            // 1. 明确的手机 UA（iPad 不匹配；Android 平板 UA 不含 "Mobile"）
+            var isPhoneUA =
+                /iPhone|iPod|Windows Phone|IEMobile|BlackBerry|Opera Mini|webOS/i.test(ua) ||
+                (/Android/i.test(ua) && /Mobile/i.test(ua)) ||
+                /HarmonyOS.*Mobile/i.test(ua);
+
+            // 2. 屏幕尺寸兜底：触屏设备且短边小于 600px，视为手机
+            //    （手机开"桌面版网站"模式时 UA 会变，但屏幕尺寸不变）
+            var isTouch = (navigator.maxTouchPoints || 0) > 0;
+            var shortSide = Math.min(screen.width, screen.height);
+            var isSmallTouchScreen = isTouch && shortSide > 0 && shortSide < 600;
+
+            if (isPhoneUA || isSmallTouchScreen) {
+                document.documentElement.classList.add("is-phone");
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 手机拦截提示 -->
+    <div id="mobileBlock" class="mobile-block" role="alert">
+        <div class="mobile-block-card">
+            <div class="mobile-block-icon">🖥️</div>
+            <h2>Not Available on Phones</h2>
+            <p>This website is not available on mobile phones.<br>Please visit it on a computer or tablet.</p>
+            <p class="mobile-block-cn">本网站不支持手机访问，请使用电脑或平板打开。</p>
+        </div>
+    </div>
+
+    <!-- BAD APPLE BACKGROUND VIDEO -->
+    <video id="backgroundVideo" class="background-video" playsinline preload="none">
+        <source src="./bad-apple.mp4" type="video/mp4">
+    </video>
+
+    <!-- HIDDEN PLAY BUTTON -->
+    <button id="videoButton" class="video-button" aria-label="Play background video">
+        ▶
+    </button>
+
+    <div class="page" id="home">
+        <div class="side">
+            <div class="logo">Digital Wellbeing</div>
+            <div class="menu">
+                <a href="#home" class="now">Home</a>
+                <a href="#about">About me</a>
+                <a href="#youth">NZ Youth</a>
+                <a href="#solutions">Solutions</a>
+                <a href="#myth">Myth &amp; Truth</a>
+            </div>
+            <a class="signup" href="mailto:sw26234@students.sacredheart.school.nz">Contact</a>
+            <div class="side-bottom">
+                <div class="yellow-bar"></div>
+                <div class="contact">Contact us
+                    <p><a href="mailto:sw26234@students.sacredheart.school.nz">sw26234@......nz</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <p class="small-title">HOME</p>
+            <h1>Digital Wellbeing</h1>
+            <div class="home-grid">
+                <div class="box words wide">
+                    <h2>Social media and youth mental health: are we scrolling our lives away?</h2>
+                    <p>This website looks at how much time teenagers spend on social media, what it does to us, and what we can do about it. I am focusing on teens here in New Zealand, because we are the ones living it every day.</p>
+                    <p>What I found is that social media is not all bad and not all good. How we use it matters, and for some teens it has become a real problem.</p>
+                </div>
+                <div class="box words">
+                    <h2>How much do teens use their phones?</h2>
+                    <p>A 2025 survey of New Zealand teens found that 90% use social media. Most of them (62%) started when they were only 10 to 13 years old.</p>
+                    <p>On average they spend 2.5 hours a day on it, but almost a third say they spend at least five hours a day.</p>
+                </div>
+                <div class="box words">
+                    <h2>Why does it matter?</h2>
+                    <p>About 22% of the teens surveyed met the criteria for problematic use, which means their habits look a lot like addiction. Nearly half say social media gets in the way of chores, homework, family time and sleep.</p>
+                    <p>The next pages explain the myths, the issues for NZ teens, and some solutions.</p>
+                </div>
+            </div>
+            <div class="box words extra">
+                <h2>What you can find on this site</h2>
+                <p>NZ Youth shows the numbers on how much New Zealand teens use social media and how it affects daily life. Solutions looks at who is affected and what families, schools, companies and the government can do. Myth &amp; Truth explains what problematic use is, how algorithms work, and which common ideas are wrong.</p>
+                <p>If you only have a minute: the hours on our phones matter, but what matters more is whether we can stop when we want to.</p>
+            </div>
+            <div class="box footer">
+                <div class="footer-left"><b>About this website</b>All about Digital Wellbeing</div>
+                <div class="footer-right">&copy; 2026 SteveWang All rights reserved.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="about">
+        <div class="side">
+            <div class="logo">Digital Wellbeing</div>
+            <div class="menu">
+                <a href="#home">Home</a>
+                <a href="#about" class="now">About me</a>
+                <a href="#youth">NZ Youth</a>
+                <a href="#solutions">Solutions</a>
+                <a href="#myth">Myth &amp; Truth</a>
+            </div>
+            <a class="signup" href="mailto:sw26234@students.sacredheart.school.nz">Contact</a>
+            <div class="side-bottom">
+                <div class="yellow-bar"></div>
+                <div class="contact">Contact us
+                    <p><a href="mailto:sw26234@students.sacredheart.school.nz">sw26234@......nz</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <p class="small-title">ABOUT ME</p>
+            <h1>Digital Wellbeing</h1>
+            <div class="about-top">
+                <div class="box about-left">
+                    <h2>Hi, I’m Steve Wang</h2>
+                    <p>I am Originally from <strong>China</strong>, I came to New Zealand a year ago and am currently a <strong>Year 11</strong> student at <strong>Sacred Heart College</strong> in Auckland.
+                    Outside the classroom, my worlds revolve around music and programming. I love diving deep into music theory to understand how sound connects people, while simultaneously exploring coding to build creative, practical web solutions.
+                    This website is my passion project focused on Digital Wellbeing. As a teenager navigating a fast-paced digital environment, I wanted to explore how social media deeply impacts youth mental health and share insights on building a healthier, more balanced relationship with technology.</p>
+                    <div class="numbers">
+                        <div><b class="blue">10Y+</b>English Study</div>
+                        <div><b class="gold">1Y+</b>Living in NZ</div>
+                        <div><b>100%</b>Passion for Coding</div>
+                    </div>
+                </div>
+                <div class="box profile">
+                    <img src="profile.jpg" alt="Steve">
+                    <h2>Steve Wang</h2>
+                    <div class="job">Ziqi Wang</div>
+                    <div class="pill">Year 11</div>
+                    <div class="pill">From CN</div>
+                    <a class="button" href="mailto:sw26234@students.sacredheart.school.nz">CONTACT STEVE NOW</a>
+                </div>
+            </div>
+
+            <div class="skills">
+                <div class="skill">
+                    <small>SKILL I</small>
+                    <h3>Musical</h3>
+                    <ul>
+                        <li>√ Electric Guitar</li>
+                        <li>√ Acoustic Guitar</li>
+                        <li>√ Easy music composing</li>
+                    </ul>
+                    <div class="skill-button">Intermediate</div>
+                </div>
+                <div class="skill active">
+                    <small>SKILL II</small>
+                    <h3>Coding</h3>
+                    <ul>
+                        <li>√ HTML&amp;CSS</li>
+                        <li>√ Python</li>
+                        <li>√ One Year experience</li>
+                    </ul>
+                    <div class="skill-button">Beginner</div>
+                </div>
+            </div>
+
+            <div class="box footer">
+                <div class="footer-left"><b>About this website</b>All about Digital Wellbeing</div>
+                <div class="footer-right">&copy; 2026 SteveWang All rights reserved.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="youth">
+        <div class="side">
+            <div class="logo">Digital Wellbeing</div>
+            <div class="menu">
+                <a href="#home">Home</a>
+                <a href="#about">About me</a>
+                <a href="#youth" class="now">NZ Youth</a>
+                <a href="#solutions">Solutions</a>
+                <a href="#myth">Myth &amp; Truth</a>
+            </div>
+            <a class="signup" href="mailto:sw26234@students.sacredheart.school.nz">Contact</a>
+            <div class="side-bottom">
+                <div class="yellow-bar"></div>
+                <div class="contact">Contact us
+                    <p><a href="mailto:sw26234@students.sacredheart.school.nz">sw26234@......nz</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <p class="small-title">NZ YOUTH</p>
+            <h1>Digital Wellbeing</h1>
+            <div class="youth-grid">
+                <div class="box words">
+                    <h2>How much time do we spend?</h2>
+                    <p>The 2025 survey asked 540 teens aged 13 to 17 about their social media use. 90% said they use it, and 62% of them began between the ages of 10 and 13.</p>
+                    <p>The average is 2.5 hours a day. However, 32% said they spend five hours or more on it every day, which is a lot when you also have school and sleep.</p>
+                </div>
+                <div class="box words">
+                    <h2>Problematic use</h2>
+                    <p>Problematic use means patterns that look like addiction, such as feeling stuck on it, lying about it or arguing with people about it. 22% of the teens met this level, and for girls it was about one in four.</p>
+                    <p>Over a third were in a risky group. Only 42% of teens had use that was considered normal.</p>
+                </div>
+                <div class="box words">
+                    <h2>How it affects daily life</h2>
+                    <p>49% of teens said social media disrupts things like chores, homework, time with family and sleep. Research links problematic use with poor sleep, loneliness, anxiety and depression.</p>
+                    <p>A 2022 study also found that every extra hour on social media was linked to a 13% higher risk of depression in teens.</p>
+                </div>
+                <div class="box words">
+                    <h2>What I think is most serious</h2>
+                    <p>I think sleep and schoolwork are the most serious issues, because they affect everything else. If you are tired and behind on homework, you feel worse.</p>
+                    <p>It also affects friends and communities. On the positive side, online groups help teens stay in touch with friends and find people with the same interests.</p>
+                </div>
+            </div>
+            <div class="box words extra">
+                <h2>Communities and friends</h2>
+                <p>Social media changes how friend groups work. Group chats, streaks and posts become the way a lot of teens talk to each other, so leaving can feel like being left out. This is why many teens feel they have to be on it.</p>
+                <p>At the same time, it helps people stay in touch with family and friends who live far away, and it helps teens find others who like the same things. The problem starts when it takes over sleep, schoolwork and time with people face to face.</p>
+            </div>
+            <div class="box footer">
+                <div class="footer-left"><b>About this website</b>All about Digital Wellbeing</div>
+                <div class="footer-right">&copy; 2026 SteveWang All rights reserved.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="solutions">
+        <div class="side">
+            <div class="logo">Digital Wellbeing</div>
+            <div class="menu">
+                <a href="#home">Home</a>
+                <a href="#about">About me</a>
+                <a href="#youth">NZ Youth</a>
+                <a href="#solutions" class="now">Solutions</a>
+                <a href="#myth">Myth &amp; Truth</a>
+            </div>
+            <a class="signup" href="mailto:sw26234@students.sacredheart.school.nz">Contact</a>
+            <div class="side-bottom">
+                <div class="yellow-bar"></div>
+                <div class="contact">Contact us
+                    <p><a href="mailto:sw26234@students.sacredheart.school.nz">sw26234@......nz</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <p class="small-title">SOLUTIONS</p>
+            <h1>Digital Wellbeing</h1>
+            <div class="solutions-grid">
+                <div class="box words tall">
+                    <h2>What needs to be done</h2>
+                    <p>Citizens and families: talk about phone use at home and set rules together. In the survey, 61% of teens said it would be easy to give up social media if their friends did too, compared with 32% if they had to do it alone. So doing it together helps.</p>
+                    <p>Schools: teach digital literacy so students understand how apps are designed to keep us scrolling, and help teachers and parents support students.</p>
+                    <p>Tech companies: the apps are built to keep us on them, so the companies should take responsibility and make them safer for young people, not just say it is the user's choice.</p>
+                    <p>Government: 47% of teens and 77% of caregivers support raising the social media age to 16. The government has been looking at this. If it happens, teens who already use it too much will need support to change, and 49% of teens said they would want safe, supervised platforms for younger teens.</p>
+                    <p>Offline life: teens also asked for more after-school activities (39%) and more community spaces (33%), so there is something real to do instead of scrolling.</p>
+                </div>
+                <div class="box words">
+                    <h2>Who is affected?</h2>
+                    <p>Teens are affected most, but also parents, teachers and schools, who have to deal with tired and distracted students. Many countries around the world are looking at the same problem.</p>
+                    <p>There are positives too. Young people who feel left out in real life can find supportive communities online, which can reduce loneliness.</p>
+                </div>
+                <div class="box words">
+                    <h2>What I can do myself</h2>
+                    <p>Some simple things I can do: turn off notifications, keep my phone out of my bedroom at night, and check how many hours I actually spend each day.</p>
+                    <p>I would also try a phone-free week with my friends, since doing it together seems to work better than doing it alone.</p>
+                </div>
+            </div>
+            <div class="box words extra">
+                <h2>If the age limit goes up to 16</h2>
+                <p>Raising the age will not fix everything. Some teens worry about how they would cope if they suddenly had to stop, especially the ones who already use it a lot.</p>
+                <p>So I think the change would work better if schools and parents get education on how to help, and if there are safe places to spend time with friends, online and offline. A rule alone will not teach anyone how to use their phone properly.</p>
+            </div>
+            <div class="box footer">
+                <div class="footer-left"><b>About this website</b>All about Digital Wellbeing</div>
+                <div class="footer-right">&copy; 2026 SteveWang All rights reserved.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="myth">
+        <div class="side">
+            <div class="logo">Digital Wellbeing</div>
+            <div class="menu">
+                <a href="#home">Home</a>
+                <a href="#about">About me</a>
+                <a href="#youth">NZ Youth</a>
+                <a href="#solutions">Solutions</a>
+                <a href="#myth" class="now">Myth &amp; Truth</a>
+            </div>
+            <a class="signup" href="mailto:sw26234@students.sacredheart.school.nz">Contact</a>
+            <div class="side-bottom">
+                <div class="yellow-bar"></div>
+                <div class="contact">Contact us
+                    <p><a href="mailto:sw26234@students.sacredheart.school.nz">sw26234@......nz</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <p class="small-title">MYTH &amp; TRUTH</p>
+            <h1>Digital Wellbeing</h1>
+            <div class="myth-grid">
+                <div class="box words">
+                    <h2>What is problematic use?</h2>
+                    <p>Problematic social media use is when someone cannot control how much they use it and it starts to get in the way of daily life. Signs include being preoccupied with it, lying about it, or arguing with others about it.</p>
+                    <p>Hours are only part of it. What counts is whether it is getting in the way of school, sleep and family.</p>
+                </div>
+                <div class="box words">
+                    <h2>How do algorithms work?</h2>
+                    <p>An algorithm is a set of rules an app uses to decide what to show you. It notices what you watch, like and share, and what you stop and look at.</p>
+                    <p>Then it shows you more of the same so you stay on the app longer. That is why it can be hard to stop, because the feed never really ends.</p>
+                </div>
+                <div class="box words">
+                    <h2>Myth or fact?</h2>
+                    <p>Myth: only the number of hours on screens matters. Fact: how you use it matters too, not just the hours.</p>
+                    <p>Myth: social media is completely harmful. Fact: it can help with friendships and finding your identity, but it can also harm sleep and mood.</p>
+                    <p>Myth: it is a teen's own fault. Fact: the apps are built to keep us scrolling.</p>
+                </div>
+            </div>
+            <div class="box words extra">
+                <h2>So, are we addicted?</h2>
+                <p>Social media helps us connect, but it can also take over our time. I do not think every teen is addicted, since the survey says 22% meet the criteria. But that is still more than one in five, and many more are in the risky group.</p>
+                <p>Personally, I think a lot of us are somewhere in the middle. We are not addicted, but we do find it hard to put our phones down. So my answer is that we are not scrolling our whole lives away, but we need to watch how much we scroll.</p>
+            </div>
+            <div class="box words extra">
+                <h2>The double-edged sword</h2>
+                <p>The good side: social media helps teens stay connected, explore who they are, and find support from people who understand them. This can really help someone who feels alone.</p>
+                <p>The bad side: it can take time away from sleep, school and family, and it can make us feel worse about ourselves when we compare. Which side wins depends a lot on how we use it and how much control we have.</p>
+            </div>
+            <div class="box footer">
+                <div class="footer-left"><b>About this website</b>All about Digital Wellbeing</div>
+                <div class="footer-right">&copy; 2026 SteveWang All rights reserved.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIDEO PLAYBACK SCRIPT -->
+    <script>
+        const video = document.getElementById("backgroundVideo");
+        const button = document.getElementById("videoButton");
+
+        // 手机端：不加载、不播放视频（平板和电脑正常）
+        const isBlocked =
+            document.documentElement.classList.contains("is-phone") ||
+            window.matchMedia("(max-width: 600px) and (hover: none) and (pointer: coarse)").matches;
+
+        if (isBlocked) {
+            video.removeAttribute("src");
+            while (video.firstChild) {
+                video.removeChild(video.firstChild);
+            }
+            video.load();
+            button.hidden = true;
+        }
+
+        // Start playing when the button is clicked
+        button.addEventListener("click", async function () {
+            if (isBlocked) return;
+
+            button.hidden = true;
+
+            video.classList.add("is-playing");
+
+            try {
+                await video.play();
+            } catch (error) {
+                console.error("Video playback failed:", error);
+
+                video.classList.remove("is-playing");
+                button.hidden = false;
+            }
+        });
+
+        // Show the play button again when the video finishes
+        video.addEventListener("ended", function () {
+            video.classList.remove("is-playing");
+            video.currentTime = 0;
+            button.hidden = false;
+        });
+
+        // Restore the button if the video cannot load
+        video.addEventListener("error", function () {
+            if (isBlocked) return;
+            video.classList.remove("is-playing");
+            button.hidden = false;
+            console.error("Unable to load Bad Apple video.");
+        });
+    </script>
+
+</body>
+</html>
