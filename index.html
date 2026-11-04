@@ -1,59 +1,579 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Wellbeing</title>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    <!-- 手机检测：尽早执行，避免页面闪现（平板和电脑不受影响） -->
-    <script>
-        (function () {
-            var ua = navigator.userAgent || "";
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+  background-color: #eef4f8;
+  min-height: 100vh;
+}
 
-            // 1. 明确的手机 UA（iPad 不匹配；Android 平板 UA 不含 "Mobile"）
-            var isPhoneUA =
-                /iPhone|iPod|Windows Phone|IEMobile|BlackBerry|Opera Mini|webOS/i.test(ua) ||
-                (/Android/i.test(ua) && /Mobile/i.test(ua)) ||
-                /HarmonyOS.*Mobile/i.test(ua);
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-            // 2. 屏幕尺寸兜底：触屏设备且短边小于 600px，视为手机
-            //    （手机开"桌面版网站"模式时 UA 会变，但屏幕尺寸不变）
-            var isTouch = (navigator.maxTouchPoints || 0) > 0;
-            var shortSide = Math.min(screen.width, screen.height);
-            var isSmallTouchScreen = isTouch && shortSide > 0 && shortSide < 600;
 
-            if (isPhoneUA || isSmallTouchScreen) {
-                document.documentElement.classList.add("is-phone");
-            }
-        })();
-    </script>
+.page {
+  display: none;
+}
 
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+.page:target {
+  display: block;
+}
 
-    <!-- 手机拦截提示 -->
-    <div id="mobileBlock" class="mobile-block" role="alert">
-        <div class="mobile-block-card">
-            <div class="mobile-block-icon">🖥️</div>
-            <h2>Not Available on Phones</h2>
-            <p>This website is not available on mobile phones.<br>Please visit it on a computer or tablet.</p>
-            <p class="mobile-block-cn">本网站不支持手机访问，请使用电脑或平板打开。</p>
-        </div>
-    </div>
+body:not(:has(:target)) #home {
+  display: block;
+}
 
-    <!-- BAD APPLE BACKGROUND VIDEO -->
-    <video id="backgroundVideo" class="background-video" playsinline preload="none">
-        <source src="./bad-apple.mp4" type="video/mp4">
-    </video>
 
-    <!-- HIDDEN PLAY BUTTON -->
-    <button id="videoButton" class="video-button" aria-label="Play background video">
-        ▶
-    </button>
+.side {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 170px;
+  height: 100%;
+  background-color: white;
+  border-right: 1px solid #ddd;
+  z-index: 3;
+}
 
-    <div class="page" id="home">
-        <div class="side">
-            <div class="logo">Digital Wellbeing</div>
-            <div class="menu">
-                <a href="#home" class="now">Home</a>
+.logo {
+  padding: 20px 0;
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  background-color: black;
+}
+
+
+.menu {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.menu a {
+  display: block;
+  margin-bottom: 5px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #555;
+  border-radius: 5px;
+}
+
+.menu a:hover {
+  color: #0099cc;
+  background-color: #e3f4fa;
+}
+
+.menu a.now {
+  color: #0099cc;
+  background-color: #e3f4fa;
+  border-left: 3px solid #0099cc;
+}
+
+
+.signup {
+  display: block;
+  margin: 25px 15px;
+  padding: 10px 0;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #ffcc00;
+  border-radius: 8px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.signup:hover,
+.button:hover {
+  background-color: #ffdd44;
+}
+
+
+.side-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.yellow-bar {
+  height: 28px;
+  background-color: #ffcc00;
+}
+
+.contact {
+  padding: 10px;
+  font-size: 10px;
+  color: #444;
+}
+
+.contact p {
+  margin-top: 4px;
+  font-weight: bold;
+  color: black;
+}
+
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-left: 170px;
+  padding: 25px 35px;
+  position: relative;
+  z-index: 2;
+  background: transparent;
+}
+
+.small-title {
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #0099cc;
+}
+
+h1 {
+  width: fit-content;
+  margin: 6px 0 20px 0;
+  padding-bottom: 12px;
+  font-size: 38px;
+  border-bottom: 3px solid #00b4e0;
+}
+
+
+.box {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.words {
+  padding: 25px 30px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.words h2 {
+  margin-bottom: 10px;
+  font-size: 17px;
+}
+
+.words p {
+  margin-bottom: 10px;
+}
+
+.words p:last-child {
+  margin-bottom: 0;
+}
+
+.extra,
+.myth-wide {
+  margin-bottom: 20px;
+}
+
+
+.home-grid,
+.youth-grid,
+.solutions-grid,
+.myth-grid {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.home-grid,
+.youth-grid,
+.solutions-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.myth-grid {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.wide {
+  grid-column: 1 / 3;
+}
+
+.solutions-grid .tall {
+  grid-row: 1 / 3;
+}
+
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding: 15px 25px;
+  font-size: 12px;
+  color: #555;
+  border-radius: 12px;
+}
+
+.footer-left b {
+  display: block;
+  font-size: 13px;
+  color: black;
+}
+
+
+.about-top {
+  display: grid;
+  grid-template-columns: 1fr 230px;
+  gap: 20px;
+}
+
+.about-left {
+  padding: 25px;
+}
+
+.about-left h2 {
+  margin-bottom: 12px;
+}
+
+.about-left p {
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.numbers {
+  display: flex;
+  gap: 25px;
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.numbers div {
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+}
+
+.numbers b {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 24px;
+}
+
+.blue {
+  color: #00b4e0;
+}
+
+.gold {
+  color: #d49a00;
+}
+
+
+.profile {
+  padding: 20px;
+  text-align: center;
+}
+
+.profile img {
+  width: 155px;
+  height: 200px;
+  object-fit: cover;
+  border: 3px solid #00b4e0;
+  border-radius: 12px;
+}
+
+.profile h2 {
+  margin-top: 12px;
+  font-size: 22px;
+  color: #00b4e0;
+}
+
+.job {
+  margin: 4px 0 14px 0;
+  font-size: 12px;
+  color: #555;
+}
+
+.pill {
+  margin-bottom: 10px;
+  padding: 6px 0;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #eefaff;
+  border-radius: 8px;
+}
+
+.button {
+  display: block;
+  padding: 10px 0;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #ffcc00;
+  border-radius: 8px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+.skills {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.skill {
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 18px;
+}
+
+.skill.active {
+  border: 2px solid #00b4e0;
+}
+
+.skill small {
+  font-size: 11px;
+  font-weight: bold;
+  color: #00b4e0;
+}
+
+.skill h3 {
+  margin: 8px 0 12px 0;
+  padding-bottom: 12px;
+  font-size: 24px;
+  border-bottom: 1px solid #ddd;
+}
+
+.skill li {
+  list-style: none;
+  font-size: 13px;
+  line-height: 20px;
+  color: #555;
+}
+
+.skill-button {
+  margin-top: 15px;
+  padding: 8px 0;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #ffcc00;
+  border-radius: 8px;
+}
+
+
+/* =================================
+   BAD APPLE BACKGROUND VIDEO
+   ================================= */
+
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  object-fit: cover;
+
+  background-color: transparent;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease;
+}
+
+
+/* Show video only during playback */
+
+.background-video.is-playing {
+  opacity: 1;
+}
+
+
+/* Keep website pages above the video */
+
+.page {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Keep the sidebar above the video */
+
+.side {
+  z-index: 3;
+}
+
+
+/* Keep the content above the video */
+
+.main {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =================================
+   VIDEO PLAY BUTTON
+   ================================= */
+
+.video-button {
+  position: fixed;
+
+  right: 25px;
+  bottom: 25px;
+
+  width: 55px;
+  height: 55px;
+
+  border: 2px solid white;
+  border-radius: 50%;
+
+  background-color: rgba(0, 0, 0, 0.85);
+
+  color: white;
+  font-size: 22px;
+
+  cursor: pointer;
+
+  opacity: 0.15;
+
+  z-index: 99999;
+
+  display: block;
+
+  transition:
+    opacity 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.2s ease;
+}
+
+
+/* Make button visible when hovering */
+
+.video-button:hover,
+.video-button:focus-visible {
+  opacity: 1;
+
+  background-color: #0099cc;
+
+  outline: none;
+}
+
+
+/* Button animation */
+
+.video-button:active {
+  transform: scale(0.94);
+}
+
+
+/* Hide button while video is playing */
+
+.video-button[hidden] {
+  display: none;
+}
+
+
+/* =================================
+   PHONE BLOCK（只禁止手机，平板和电脑可访问）
+   ================================= */
+
+/* 默认不显示提示 */
+.mobile-block {
+  display: none;
+}
+
+.mobile-block-card {
+  max-width: 340px;
+  padding: 36px 28px;
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+.mobile-block-icon {
+  margin-bottom: 12px;
+  font-size: 48px;
+}
+
+.mobile-block-card h2 {
+  margin-bottom: 12px;
+  font-size: 22px;
+  color: #0099cc;
+}
+
+.mobile-block-card p {
+  font-size: 14px;
+  line-height: 22px;
+  color: #444;
+}
+
+.mobile-block-cn {
+  margin-top: 12px;
+  font-weight: bold;
+  color: #222;
+}
+
+/* JS 检测到手机时：隐藏整个网站，只显示提示 */
+html.is-phone,
+html.is-phone body {
+  height: 100%;
+  overflow: hidden;
+}
+
+html.is-phone .page,
+html.is-phone .page:target,
+html.is-phone body:not(:has(:target)) #home,
+html.is-phone .background-video,
+html.is-phone .video-button {
+  display: none !important;
+}
+
+html.is-phone .mobile-block {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #eef4f8;
+}
+
+/* CSS 兜底（JS 被禁用时）：窄屏触屏设备视为手机
+   宽度上限 600px，平板（≥744px）和电脑窗口不受影响 */
+@media (max-width: 600px) and (hover: none) and (pointer: coarse) {
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .page,
+  .page:target,
+  body:not(:has(:target)) #home,
+  .background-video,
+  .video-button {
+    display: none !important;
+  }
+
+  .mobile-block {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #eef4f8;
+  }
+}
