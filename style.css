@@ -480,3 +480,99 @@ h1 {
 .video-button[hidden] {
   display: none;
 }
+
+
+/* =================================
+   MOBILE BLOCK（禁止手机访问）
+   ================================= */
+
+/* 默认（电脑端）不显示提示 */
+.mobile-block {
+  display: none;
+}
+
+.mobile-block-card {
+  max-width: 340px;
+  padding: 36px 28px;
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+.mobile-block-icon {
+  margin-bottom: 12px;
+  font-size: 48px;
+}
+
+.mobile-block-card h2 {
+  margin-bottom: 12px;
+  font-size: 22px;
+  color: #0099cc;
+}
+
+.mobile-block-card p {
+  font-size: 14px;
+  line-height: 22px;
+  color: #444;
+}
+
+.mobile-block-cn {
+  margin-top: 12px;
+  font-weight: bold;
+  color: #222;
+}
+
+/* 手机 / 平板 / 窄屏：隐藏整个网站，只显示提示 */
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .page,
+  .page:target,
+  body:not(:has(:target)) #home,
+  .background-video,
+  .video-button {
+    display: none !important;
+  }
+
+  .mobile-block {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #eef4f8;
+  }
+}
+
+/* JS 检测到手机 / 平板 UA 时（覆盖手机横屏等情况） */
+html.is-mobile,
+html.is-mobile body {
+  height: 100%;
+  overflow: hidden;
+}
+
+html.is-mobile .page,
+html.is-mobile .page:target,
+html.is-mobile body:not(:has(:target)) #home,
+html.is-mobile .background-video,
+html.is-mobile .video-button {
+  display: none !important;
+}
+
+html.is-mobile .mobile-block {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #eef4f8;
+}
